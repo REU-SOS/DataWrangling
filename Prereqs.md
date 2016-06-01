@@ -1,3 +1,7 @@
+# Databases
+
+Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access, and SQLite — stores data in a different way, so a database created with one cannot be used directly by another. However, every database manager can import and export data in a variety of formats, like .csv, so it is possible to move information from one to another.
+
 ### Installing MySQL
 
 ```
