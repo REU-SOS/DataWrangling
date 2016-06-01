@@ -17,9 +17,11 @@ choco install .\mysql.nuspec -y
 choco install mysql.workbench -y
 ```
 
+Depending on how install goes, we may need to help people make sure their mysql server is running.
+
 ### Setting up a Database
 
-Running mysql
+Running mysql client.
 
 ```
 # without credentials
@@ -39,13 +41,13 @@ cd DataWrangling/import
 # copy your product hunt data into a new folder "data" (path should result as DataWrangling/import/data
 ```
 
-Import data
+Import data.
 
 ```
 mysql -u root -p ProductHunt < import.sql 
 ```
 
-Inspect your data
+Run mysql client. Inspect your data.
 
 ```
 mysql> use ProductHunt
