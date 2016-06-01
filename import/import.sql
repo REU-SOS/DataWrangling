@@ -1,28 +1,79 @@
+-- SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS Posts;
-
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Votes;
 CREATE TABLE Posts
 (
-	id int, 
-	created_at TIMESTAMP, 
-	name varchar(255), 
-	tagline varchar(1000), 
-	user_id int, 
-	user_username varchar(255), 
-	votes_count int, 
-	comments_count int, 
-	redirect_url varchar(500), 
-	discussion_url varchar(500)
+    id int, 
+    created_at TIMESTAMP, 
+    name varchar(255), 
+    tagline varchar(1000), 
+    user_id int, 
+    user_username varchar(255), 
+    votes_count int, 
+    comments_count int, 
+    redirect_url varchar(500), 
+    discussion_url varchar(500)
+);
+CREATE TABLE Users
+(
+    id int, 
+    created_at TIMESTAMP, 
+    name varchar(255), 
+    user_username varchar(255), 
+    image varchar(500),
+    headline varchar(1000),
+    invited_by_id int,
+    followers_count int,
+    followings_count int,
+    votes_count int,
+    posts_count int,
+    maker_of_count int,
+    comments_count int,
+    profile_url varchar(500)
+    
+);
+CREATE TABLE Votes
+(
+    id int, 
+    created_at TIMESTAMP, 
+    user_id int,
+    post_id int,
+    user_username varchar(255),
+    name varchar(255),
+    tagline varchar(1000),
+    discussion_url varchar(500)
 );
 
--- 57243;2016-03-31 19:55:33.127923-07;We Are Heroes;The next-gen MOBA+ RPG for mobile devices;443077;anh;1;0;http://www.producthunt.com/l/b3443c7ac79b50;http://www.producthunt.com/posts/we-are-heroes-2
--- 57242;2016-03-31 19:53:36.614695-07;Tesla Model 3;The mass market electric car by Tesla is here ⚡️🚘;16056;erictwillis;44;18;http://www.producthunt.com/l/3843d5a8440dc8;http://www.producthunt.com/posts/tesla-model-3-2
 
-LOAD DATA LOCAL INFILE 'data/posts--2016-04-01_14-36-24-UTC.csv'
+LOAD DATA LOCAL INFILE 'data/posts.csv' 
 INTO TABLE Posts
+CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ';'
     ENCLOSED BY '"'
-LINES TERMINATED BY '\r\n'
+LINES TERMINATED BY '\n'
 IGNORE 1 LINES -- Skip header
 (id, created_at, name, tagline, user_id, user_username, votes_count, comments_count, redirect_url, discussion_url);
+SHOW warnings;
+
+LOAD DATA LOCAL INFILE 'data/users.csv' 
+INTO TABLE Users
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY ';'
+    ENCLOSED BY '"'
+    ESCAPED BY '' -- We need to to deal with use of "\" and unicode/emoji characters Rob Dodson \ʕ•ᴥ•ʔ/;
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES -- Skip header
+(id, created_at, name, user_username, image, headline, invited_by_id, followers_count, followings_count, votes_count, posts_count, maker_of_count, comments_count, profile_url);
+SHOW warnings;
+
+LOAD DATA LOCAL INFILE 'data/votes.csv' 
+INTO TABLE Votes
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY ';'
+    ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES -- Skip header
+(id, created_at, user_id, post_id, user_username, name, tagline, discussion_url);
 SHOW warnings;
