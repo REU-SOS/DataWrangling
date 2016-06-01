@@ -53,6 +53,12 @@ Import data.
 mysql -u root -p ProductHunt < import.sql 
 ```
 
+If you're getting an error with "COMMAND NOT ALOWED", use this option:
+
+```
+mysql -u root -p ProductHunt < import.sql 
+```
+
 Run mysql client. Inspect your data.
 
 ```sql
