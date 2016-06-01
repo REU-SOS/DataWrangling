@@ -1,3 +1,5 @@
+# Basic
+
 Remember when we waited to check which post had the highest votes?
 
 This is how we would do this in SQL:
