@@ -23,7 +23,7 @@ Depending on how install goes, we may need to help people make sure their mysql 
 
 Running mysql client.
 
-```
+```bash
 # without credentials
 mysql
 # with credentials
@@ -43,13 +43,13 @@ cd DataWrangling/import
 
 Import data.
 
-```
+```bash
 mysql -u root -p ProductHunt < import.sql 
 ```
 
 Run mysql client. Inspect your data.
 
-```
+```sql
 mysql> use ProductHunt
 mysql> show tables;
 mysql> select count(*) from Posts;
@@ -62,6 +62,6 @@ Turns out, newlines are terminated differently in this file, we need to fix impo
 Now run import and verifications steps above, again.
 
 We can check if our data looks right:
-```
+```sql
 select * from Posts LIMIT 1;
 ```
