@@ -4,27 +4,33 @@
 
 Let's examine and then extend the import.sql to import more data!
 
-This makes sure we delete old data before importing fresh.
-```sql
-DROP TABLE IF EXISTS Posts;
+### Getting all the files imported
+
+Each developer has a csv file, but we want to be able to load all of them.
+One simple strategy is to combine these files together:
+
+```bash
+cat BlazeData_Dev_* > AllEvents.csv
 ```
 
-This creates a new table. The syntax describes the table, and then a list of variable names and types.
-Depending on your database manager, there variable types can vary.
+Using a bash script is an [alternative approach](https://stackoverflow.com/a/8539153/547112).
+
+### Adding a new import.
+
+This makes sure we delete old data before importing fresh.
 
 ```sql
-CREATE TABLE Posts
+DROP TABLE IF EXISTS Events;
+```
+
+This creates a new table. The syntax describes the table, and then a list of variable names and types. Depending on your database manager, the column types can vary.
+
+```sql
+CREATE TABLE Events
 (
-	id int, 
-	created_at TIMESTAMP, 
-	name varchar(255), 
-	tagline varchar(1000), 
-	user_id int, 
-	user_username varchar(255), 
-	votes_count int, 
-	comments_count int, 
-	redirect_url varchar(500), 
-	discussion_url varchar(500)
+    eventTime TIMESTAMP, 
+    userId int,
+    eventType VARCHAR(255)
 );
 ```
 

@@ -39,7 +39,7 @@ mysql -u root -p
 Create database
 
 ```sql
-create database ProductHunt;
+create database DevInt;
 ```
 
 ```bash
@@ -50,30 +50,30 @@ cd DataWrangling/import
 Import data.
 
 ```bash
-mysql -u root -p ProductHunt < import.sql 
+mysql DevInt < import.sql 
 ```
 
 If you're getting an error with "COMMAND NOT ALOWED", use this option:
 
 ```
-mysql -u root -p ProductHunt --local-infile=1 < import.sql 
+mysql DevInt --local-infile=1 < import.sql 
 ```
 
 Run mysql client. Inspect your data.
 
 ```sql
-mysql> use ProductHunt
+mysql> use DevInt
 mysql> show tables;
-mysql> select count(*) from Posts;
+mysql> select count(*) from Users;
 ```
 
-Uh-oh! Zero rows? Never plan on import working right. Always check!
+Uh-oh! Zero or just 1 rows? Never plan on import working right. Always check!
 
-Turns out, newlines are terminated differently in this file, we need to fix import.sql `LINES TERMINATED BY \r\n` to just `LINES TERMINATED BY \n`. This is a difference in windows encoded newlines vs unix style newlines.
+Turns out, newlines are terminated differently in this file, we need to fix import.sql `LINES TERMINATED BY \n` to just `LINES TERMINATED BY \r\n`. This is a difference in unix encoded newlines vs windows style newlines.
 
 Now run import and verifications steps above, again.
 
 We can check if our data looks right:
 ```sql
-select * from Posts LIMIT 1;
+select * from Users LIMIT 10;
 ```
