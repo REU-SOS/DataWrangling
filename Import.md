@@ -44,27 +44,15 @@ This code will load data from the CSV into the table.
 This basically maps the columns that appear in the CSV file to the columns in the database table.
 
 ```sql
-LOAD DATA LOCAL INFILE 'data/posts--2016-04-01_14-36-24-UTC.csv'
-INTO TABLE Posts
-FIELDS TERMINATED BY ';'
-    ENCLOSED BY '"'
+LOAD DATA LOCAL INFILE 'data/AllEvents.csv' 
+INTO TABLE Events
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\r\n'
-IGNORE 1 LINES -- Skip header
-(id, created_at, name, tagline, user_id, user_username, votes_count, comments_count, redirect_url, discussion_url);
+(eventTime, userId, eventType);
 SHOW warnings;
-```
-
-### Warnings?
-
-Notice that 
-
-tail -n +2
-
-```bash
-tail -n +2 BlazeData_Dev_* > AllEvents.csv
 ```
 
 ## Practice
 
-* Import users
-* Import votes
+* Import messages
