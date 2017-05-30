@@ -13,6 +13,12 @@ One simple strategy is to combine these files together:
 cat BlazeData_Dev_* > AllEvents.csv
 ```
 
+However, that will add the header line multiple lines. But this will work.
+
+```bash
+awk FNR-1 BlazeData_Dev_*.csv > AllEvents.csv
+```
+
 Using a bash script is an [alternative approach](https://stackoverflow.com/a/8539153/547112).
 
 ### Adding a new import.
@@ -46,6 +52,16 @@ LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES -- Skip header
 (id, created_at, name, tagline, user_id, user_username, votes_count, comments_count, redirect_url, discussion_url);
 SHOW warnings;
+```
+
+### Warnings?
+
+Notice that 
+
+tail -n +2
+
+```bash
+tail -n +2 BlazeData_Dev_* > AllEvents.csv
 ```
 
 ## Practice

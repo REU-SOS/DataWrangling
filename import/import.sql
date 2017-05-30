@@ -51,7 +51,7 @@ CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ','
 --    ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
-IGNORE 1 LINES -- Skip header
+-- IGNORE 1 LINES -- Skip header
 (eventTime, userId, eventType);
 SHOW warnings;
 
