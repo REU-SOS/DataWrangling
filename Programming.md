@@ -4,9 +4,9 @@
 
 We often need to be able to do more complex analysis that we cannot easily express in SQL.
 
-This repo has a Java project that shows how to make a connection to a SQL database.
+This repo has a Java project that shows how to make a connection to a SQL database.  It also shows how to work with a properties file for storing secrets, like your database user name and password.
 
-Connect to the database
+Connect to the database.
 
 ## Practice
 

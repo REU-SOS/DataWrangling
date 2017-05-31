@@ -2,7 +2,7 @@
 
 # Advanced
 
-Select users who have at least 10 days of activity, count frequency of their top commands.
+Select users who have at least 100 days of activity, count frequency of their top commands.
 
 ```sql
 select eventType, COUNT(*) frequency from Users, Events 
@@ -15,7 +15,7 @@ LIMIT 10;
 
 ### Joins 
 
-See tutorial for aggregration and joins:
+See tutorial for aggregation and joins:
 
 * http://swcarpentry.github.io/sql-novice-survey/06-agg.html
 * http://swcarpentry.github.io/sql-novice-survey/07-join.html
