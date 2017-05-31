@@ -48,7 +48,7 @@ LOAD DATA LOCAL INFILE 'data/AllEvents.csv'
 INTO TABLE Events
 CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\r\n'
+LINES TERMINATED BY '\r\n' -- Remember to use right line endings for your system.
 (eventTime, userId, eventType);
 SHOW warnings;
 ```

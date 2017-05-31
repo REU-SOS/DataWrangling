@@ -2,23 +2,26 @@
 
 # Basic
 
-Remember when we waited to check which post had the highest votes?
+In order to select the default database, always remember to start your session with:
+```sql
+use DevInt;
+```
 
-This is how we would do this in SQL:
+How can we see the top 10 users with most days of activity?
 
 ```sql
-select * from Posts 
-ORDER BY votes_count DESC 
-LIMIT 1;
+select * from Users 
+ORDER BY number_of_days DESC 
+LIMIT 10;
 ```
 
 #### Let's try some other basic queries.
 
-How many posts have been voted on at least 10 times?
+How many users have at least 10 days of activity?
 
 ```sql
-select COUNT(*) from Posts 
-WHERE votes_count > 10;
+select COUNT(*) from Users 
+WHERE number_of_days > 10;
 ```
 
 How many posts contain the phrase iphone?

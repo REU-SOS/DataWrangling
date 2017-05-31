@@ -69,7 +69,7 @@ mysql> select count(*) from Users;
 
 Uh-oh! Zero or just 1 rows? Never plan on import working right. Always check!
 
-Turns out, newlines are terminated differently in this file, we need to fix import.sql `LINES TERMINATED BY \n` to just `LINES TERMINATED BY \r\n`. This is a difference in unix encoded newlines vs windows style newlines.
+Turns out, newlines are terminated differently depending on your system, if you see this problem, we need to fix import.sql `LINES TERMINATED BY \n` to just `LINES TERMINATED BY \r\n`. This is a difference in unix encoded newlines vs windows style newlines.
 
 Now run import and verifications steps above, again.
 
