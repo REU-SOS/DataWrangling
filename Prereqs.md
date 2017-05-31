@@ -44,7 +44,7 @@ create database DevInt;
 
 ```bash
 cd DataWrangling/import
-# copy your product hunt data into a new folder "data" (path should result as DataWrangling/import/data
+# copy your ABB data into a new folder "data" (path should result as DataWrangling/import/data
 ```
 
 Import data.
