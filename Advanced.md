@@ -17,8 +17,8 @@ LIMIT 10;
 
 See tutorial for aggregation and joins:
 
-* http://swcarpentry.github.io/sql-novice-survey/06-agg.html
-* http://swcarpentry.github.io/sql-novice-survey/07-join.html
+* http://swcarpentry.github.io/sql-novice-survey/06-agg/
+* http://swcarpentry.github.io/sql-novice-survey/07-join/
 
 ### Indexes
 
