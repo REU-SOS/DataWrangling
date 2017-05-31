@@ -23,13 +23,14 @@ public class App
         System.out.println( "Hello World!" );
         
         Properties prop = new Properties();
+        
         try (InputStream input = new FileInputStream(PROP_FILE)) {
 			prop.load(input);
         
 		    AbstractConnection connection = new MySQLConnection();
-		    connection.Init("DevInt", prop.getProperty("user"), prop.getProperty("pw"));
+		    connection.init("DevInt", prop.getProperty("user"), prop.getProperty("pw"));
 
-            ResultSet set = connection.Query("select * from Events");
+            ResultSet set = connection.query("select * from Events");
 
 			while( set.next() )
 			{
@@ -39,6 +40,8 @@ public class App
 				
 				System.out.println(timestamp + "," + id + "," + eventType);
 			}
+			
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

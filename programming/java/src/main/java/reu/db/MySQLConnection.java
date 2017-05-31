@@ -6,15 +6,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Connection to a MySQL database.
+ */
 public class MySQLConnection extends AbstractConnection
 {
+	/** MySQL driver */
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String dbName=null;
+	/** Database name */
+	private String dbName = null;
+	/** Instance of a connection */
 	private Connection conn = null;
 
-	Statement _commonStatement;
+	/** SQL statement object */
+	private Statement _commonStatement;
 
-	public void Init(String db, String user, String pass)
+	/**
+	 * Initializes the connection to the given database using the user and password.
+	 * @param db database to connect to
+	 * @param user username to authenticate with
+	 * @param pass password to authenticate with
+	 */
+	public void init(String db, String user, String pass)
 	{
 		try 
 		{
@@ -36,7 +49,12 @@ public class MySQLConnection extends AbstractConnection
 		}
 	}
 	
-	public ResultSet Query(String query)
+	/**
+	 * Returns a java.sql.ResultSet containing the result of the given query.
+	 * @param q query to run on the database
+	 * @return result of the query
+	 */
+	public ResultSet query(String query)
 	{
 		try 
 		{
@@ -47,5 +65,19 @@ public class MySQLConnection extends AbstractConnection
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 * Closes the database connection when done.
+	 */
+	public void close() {
+		try 
+		{
+			_commonStatement.close();
+			conn.close();
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 }
