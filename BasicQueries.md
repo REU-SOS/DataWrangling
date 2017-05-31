@@ -1,4 +1,4 @@
-[Prereqs](https://github.com/REU-SOS/DataWrangling/blob/master/Prereqs.md#installing-mysql) | [Basics Queries](https://github.com/REU-SOS/DataWrangling/blob/master/BasicQueries.md#basic) | [Importing Data](https://github.com/REU-SOS/DataWrangling/blob/master/Import.md#import) | [Advanced](https://github.com/REU-SOS/DataWrangling/blob/master/Advanced.md#advanced) | [Programming with Databases](https://github.com/REU-SOS/DataWrangling/blob/master/Programming.md#programming)
+[Prereqs](Prereqs.md#installing-mysql) | [Importing Data](Import.md#import) | [Basics Queries](BasicQueries.md#basic) |  [Advanced](Advanced.md#advanced) | [Programming with Databases](Programming.md#programming)
 
 # Basic
 
@@ -17,31 +17,34 @@ LIMIT 10;
 
 #### Let's try some other basic queries.
 
-How many users have at least 10 days of activity?
+Filtering: How many users have at least 10 days of activity?
 
 ```sql
 select COUNT(*) from Users 
 WHERE number_of_days > 10;
 ```
 
-How many posts contain the phrase iphone?
+Filtering: How many events contain the commands related to viewing?
 
 ```sql
-select COUNT(*) from Posts 
-WHERE tagline LIKE '%iphone%';
+select COUNT(*) from Events 
+WHERE eventType LIKE '%View.%';
 ```
 
-Grouping posts
+Grouping: What are the top most popular events?
 
 ```sql
-select redirect_url, COUNT(*) as timesPosted from Posts 
-GROUP BY redirect_url
-HAVING timesPosted > 1;
+select eventType, COUNT(*) as frequency from Events 
+GROUP BY eventType
+ORDER BY frequency DESC
+LIMIT 10
 ```
+
+Date Functions: `DAYOFWEEK` - returns the week day number (1 for Sunday,2 for Monday ... 7 for Saturday)
 
 ## Practice
 
-* How many posts contain at least 1 comment?
-* What post has the highest comments?
-* Which post created after March 1, 2016 has the highest votes?
-* Who submits the most posts?
+* Do users typically "View" code or "Edit" code more often?
+* How many users have used `Edit.GoToDefinition` at least once?
+* What day of week has the events?
+* Which is the earliest and latest events?
