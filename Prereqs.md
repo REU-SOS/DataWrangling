@@ -5,8 +5,10 @@
 Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access, and SQLite — stores data in a different way, so a database created with one cannot be used directly by another. However, every database manager can import and export data in a variety of formats, like .csv, so it is possible to move information from one to another.
 
 ### Installing MySQL
+Run the following on the appropriate shell for your OS.
 
-```
+**Mac**
+```bash
 brew install mysql
 # enable services and start local server
 brew tap homebrew/services
@@ -17,8 +19,8 @@ brew install brew-cask
 brew cask install mysqlworkbench
 ```
 
-Windows:
-```
+**Windows** (you may need to run your shell in Administrator mode)
+```bash
 # install mysql
 choco install mysql
 
@@ -30,45 +32,62 @@ choco install .\mysql.nuspec -y
 choco install mysql.workbench -y
 ```
 
-[Alternative see iTrust MySQL instructions](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions)
+**Executable Install**
+You can also install MySQL from the website.  We have installation instructions used in one of our classes available - [Alternative see iTrust MySQL instructions](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions).
 
-Depending on how install goes, we may need to help people make sure their mysql server is running.
+**Run MySQL Server**
+If the mysql command doesn't work in your local shell or you cannot connect to the database, you may need to [start your MySQL server](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions#starting_mysql).
 
 ### Setting up a Database
 
-Running mysql client.
+MySQL, when run from the command line, is its own client.  From the command line, you have your standard shell prompt.  We'll represent this as **$**.  When in the MySQL client, you'll have a MySQL prompt.  We'll represent this as **mysql>**.  The prompts are there to help you determine if you should use the OS shell or the MySQL client.  Do NOT enter the prompts as part of the command!  You'll get an error.
+
+Shell commands like `ls` won't work in the MySQL client.  SQL queries won't working in your OS shell.  If you're in the MySQL client and need to get back to your OS shell, type `exit`.  To start the MySQL client, enter one of the following commands.  If you installed MySQL using the `choco` or `brew`, the root password is empty string (just hit enter when prompted for the password).
 
 ```bash
 # without credentials
-mysql
+$ mysql
 # with credentials
-mysql -u root -p
+$ mysql -u root -p
 ```
 
-Create database
+**NOTE:** If you could only connect to the MySQL client using `mysql -u root -p`, that means you'll need to add `-u root -p` everytime you run the `mysql` command from the OS shell.
+
+**Create Database**
+
+Start the MySQL client using `mysql -u root -p`.
 
 ```sql
-create database DevInt;
+mysql> create database DevInt;
 ```
 
+Exit the MySQL client.
+
+**Set up the Data**
+
 ```bash
-cd DataWrangling/import
-# copy your ABB data into a new folder "data" (path should result as DataWrangling/import/data
+$ cd DataWrangling/import
+$ mkdir data
+# copy your ABB data into the new folder "data" (path should result as DataWrangling/import/data
 ```
 
-Import data.
+**Import Data**
+
+Make sure that you're in `DataWrangling/import`.
 
 ```bash
-mysql DevInt < import.sql 
+$ mysql -u root -p DevInt < import.sql 
 ```
 
 If you're getting an error with "COMMAND NOT ALOWED", use this option:
 
 ```
-mysql DevInt --local-infile=1 < import.sql 
+$ mysql -u root -p DevInt --local-infile=1 < import.sql 
 ```
 
-Run mysql client. Inspect your data.
+**Check Import Success**
+
+Run `mysql -u root -p`. Inspect your data using the following MySQL statements.
 
 ```sql
 mysql> use DevInt
@@ -80,9 +99,9 @@ Uh-oh! Zero or just 1 rows? Never plan on import working right. Always check!
 
 Turns out, newlines are terminated differently depending on your system, if you see this problem, we need to fix import.sql `LINES TERMINATED BY \n` to just `LINES TERMINATED BY \r\n`. This is a difference in unix encoded newlines vs windows style newlines.
 
-Now run import and verifications steps above, again.
+Now run import and verifications steps above, again.  
 
 We can check if our data looks right:
 ```sql
-select * from Users LIMIT 10;
+mysql> select * from Users LIMIT 10;
 ```
