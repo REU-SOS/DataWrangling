@@ -8,20 +8,29 @@ Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access,
 
 ```
 brew install mysql
+# enable services and start local server
+brew tap homebrew/services
+brew services mysql start
 # Install workbench
 brew tap caskroom/cask
 brew install brew-cask
 brew cask install mysqlworkbench
 ```
 
+Windows:
 ```
-# Use my custom mysql installer :)
+# install mysql
+choco install mysql
+
+# Or, Use my custom mysql installer :)
 git clone https://github.com/CSC-326/AutoInstall
 cd AutoInstall/choco/mysql/
 choco install .\mysql.nuspec -y
 
 choco install mysql.workbench -y
 ```
+
+[Alternative see iTrust MySQL instructions](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions)
 
 Depending on how install goes, we may need to help people make sure their mysql server is running.
 
