@@ -10,7 +10,7 @@ Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access,
 brew install mysql
 # enable services and start local server
 brew tap homebrew/services
-brew services mysql start
+brew services start mysql
 # Install workbench
 brew tap caskroom/cask
 brew install brew-cask
