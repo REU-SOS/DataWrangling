@@ -8,6 +8,7 @@ Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access,
 Run the following on the appropriate shell for your OS.
 
 **Mac**
+
 ```bash
 brew install mysql
 # enable services and start local server
@@ -20,6 +21,7 @@ brew cask install mysqlworkbench
 ```
 
 **Windows** (you may need to run your shell in Administrator mode)
+
 ```bash
 # install mysql
 choco install mysql
@@ -33,9 +35,11 @@ choco install mysql.workbench -y
 ```
 
 **Executable Install**
+
 You can also install MySQL from the website.  We have installation instructions used in one of our classes available - [Alternative see iTrust MySQL instructions](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions).
 
 **Run MySQL Server**
+
 If the mysql command doesn't work in your local shell or you cannot connect to the database, you may need to [start your MySQL server](http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions#starting_mysql).
 
 ### Setting up a Database

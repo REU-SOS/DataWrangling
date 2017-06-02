@@ -2,6 +2,10 @@
 
 # Advanced
 
+Advanced queries involve combining data from multiple tables and doing calculations on the data.
+
+## Example Queries
+
 Select users who have at least 100 days of activity, count frequency of their top commands.
 
 ```sql
@@ -12,6 +16,8 @@ GROUP BY eventType
 ORDER BY frequency DESC
 LIMIT 10;
 ```
+
+## Resources
 
 ### Joins 
 

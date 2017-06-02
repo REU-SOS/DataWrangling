@@ -2,12 +2,12 @@
 
 # Programming
 
-We often need to be able to do more complex analysis that we cannot easily express in SQL.
+We often need to be able to do more complex analysis that we cannot easily express in SQL.  It may also be easier to write a program that runs several small queries quickly and then combines the data rather than trying to write a SQL query do all the work.
 
-This repo has a Java project that shows how to make a connection to a SQL database.  It also shows how to work with a properties file for storing secrets, like your database user name and password.
+This repo has a Java project (that you can open up in Eclipse) that shows how to make a connection to a SQL database.  It also shows how to work with a properties file for storing secrets, like your database user name and password.
 
-Connect to the database.
+Run `App` to connect to the database and display all of the `Events` data.
 
 ## Practice
 
-* Implement a simple select statement in Java, and iterate over results.
+* Implement a simple select statement in Java, and iterate over results.  

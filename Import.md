@@ -2,18 +2,21 @@
 
 # Import
 
-Let's examine and then extend the import.sql to import more data!
+Let's examine and then extend `import.sql` to import more data!
 
 ### Getting all the files imported
 
-Each developer has a csv file, but we want to be able to load all of them.
-One simple strategy is to combine these files together:
+Each developer has a csv file, but we want to be able to load all of them.  We need to combine them all together.
+
+Change directory to `DataWrangling/import/data/`.
+
+One simple strategy is to combine these files together in the OS shell:
 
 ```bash
 cat BlazeData_Dev_* > AllEvents.csv
 ```
 
-However, that will add the header line multiple lines. But this will work.
+However, that will add the header line multiple lines, which won't work in our import. But this will work to combine the files together while removing all of the header lines.
 
 ```bash
 awk FNR-1 BlazeData_Dev_*.csv > AllEvents.csv
@@ -23,36 +26,37 @@ Using a bash script is an [alternative approach](https://stackoverflow.com/a/853
 
 ### Adding a new import.
 
-This makes sure we delete old data before importing fresh.
+Update `import.sql` or create a new import file (e.g., `importEvents.sql`) in the `DataWrangling/import/` directory.  There are three parts to the import script.
 
-```sql
-DROP TABLE IF EXISTS Events;
-```
+ 1. Delete old data before importing fresh.
 
-This creates a new table. The syntax describes the table, and then a list of variable names and types. Depending on your database manager, the column types can vary.
+    ```sql
+    DROP TABLE IF EXISTS Events;
+    ```
 
-```sql
-CREATE TABLE Events
-(
-    eventTime TIMESTAMP, 
-    userId int,
-    eventType VARCHAR(255)
-);
-```
+ 2. Create a new table. The syntax describes the table, which includes the table name and a list of table attributes or columns. The attributes are given a name and a type.  Depending on your database manager, the column types can vary.
 
-This code will load data from the CSV into the table. 
-This basically maps the columns that appear in the CSV file to the columns in the database table.
+    ```sql
+    CREATE TABLE Events
+    (
+        eventTime TIMESTAMP, 
+        userId int,
+        eventType VARCHAR(255)
+    );
+    ```
 
-```sql
-LOAD DATA LOCAL INFILE 'data/AllEvents.csv' 
-INTO TABLE Events
-CHARACTER SET utf8mb4
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\r\n' -- Remember to use right line endings for your system.
-(eventTime, userId, eventType);
-SHOW warnings;
-```
+ 3. Load CSV file into the table. The statement maps the columns that appear in the CSV file to the columns in the database table.  The token delimiter and line delimiter can be modified for your specific data set.
+
+    ```sql
+    LOAD DATA LOCAL INFILE 'data/AllEvents.csv' 
+    INTO TABLE Events
+    CHARACTER SET utf8mb4
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\n' -- Remember to use right line endings for your system.
+    (eventTime, userId, eventType);
+    SHOW warnings;
+    ```
 
 ## Practice
 
-* Import messages
+* Import messages.  Either add to the `import.sql` file or create a new file `importMessages.sql`.  The messages are listed in `MessageList.csv`; the first row provides the column information.  
