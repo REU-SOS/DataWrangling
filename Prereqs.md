@@ -54,7 +54,7 @@ $ mkdir data
 # copy your ABB data into the new folder "data" (path should result as DataWrangling/import/data)
 ```
 
-**Import Data**
+## Import Data
 
 Make sure that you're in `DataWrangling/import`.
 
@@ -68,7 +68,7 @@ If you're getting an error with "COMMAND NOT ALOWED", use this option:
 $ mysql -u root -p DevInt --local-infile=1 < import.sql 
 ```
 
-**Check Import Success**
+## Check Import Success
 
 Run `mysql -u root -p`. Inspect your data using the following MySQL statements.
 
